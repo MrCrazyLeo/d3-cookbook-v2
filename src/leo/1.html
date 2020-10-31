@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Array as Data</title>
+    <link rel="stylesheet" type="text/css" href="../../css/styles.css" />
+    <script type="text/javascript" src="../../lib/d3.js"></script>
+  </head>
+
+  <body>
+    <script>
+      const data = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+      function render(data) {
+        const bars = d3.select("body").selectAll("div.h-bar").data(data);
+        bars
+          .enter()
+          .append("div")
+          .attr("class", "h-bar")
+          .merge(bars)
+          .style("width", (d) => d * 3 + "px")
+          .text((d) => d);
+        bars.exit().remove();
+      }
+      //   setInterval(() => {
+      //     data.shift();
+      //     data.push(Math.round(Math.random() * 100));
+      //     render(data);
+      //   }, 1500);
+      render(data);
+    </script>
+  </body>
+</html>
